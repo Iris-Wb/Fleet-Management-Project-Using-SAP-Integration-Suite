@@ -1,0 +1,93 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Vehicle Contract API",
+    "version": "1.0.0",
+    "description": "API schema for vehicle contract information"
+  },
+  "paths": {
+    "/vehicle-contract": {
+      "post": {
+        "summary": "Cria ou atualiza um contrato de veículo",
+        "operationId": "createOrUpdateVehicleContract",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VehicleContract"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Contrato de veículo processado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VehicleContractResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro de validação de dados"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "VehicleContract": {
+        "type": "object",
+        "properties": {
+          "customerName": {
+            "type": "string"
+          },
+          "vehicleId": {
+            "type": "string"
+          },
+          "fleetId": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "endDate": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "dailyRate": {
+            "type": "number"
+          },
+          "totalAmount": {
+            "type": "number"
+          },
+          "status": {
+            "type": "string"
+          },
+          "paymentStatus": {
+            "type": "string"
+          },
+          "contractId": {
+            "type": "string"
+          }
+        }
+      },
+      "VehicleContractResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

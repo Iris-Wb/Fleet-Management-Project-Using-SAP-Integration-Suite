@@ -1,0 +1,112 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Vehicle Rental",
+    "version": "1.0.0",
+    "description": "API schema for vehicle rental information"
+  },
+  "paths": {
+    "/rental": {
+      "post": {
+        "summary": "Cria ou atualiza um registro de locação de veículo",
+        "operationId": "createOrUpdateRental",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VehicleRental"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Registro de locação recebido com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RentalResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro de validação de dados"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "VehicleRental": {
+        "type": "object",
+        "properties": {
+          "customerName": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "dailyRate": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "status": {
+            "type": "string"
+          },
+          "paymentStatus": {
+            "type": "string"
+          },
+          "details": {
+            "type": "object",
+            "properties": {
+              "vehicleId": {
+                "type": "string"
+              },
+              "fleetId": {
+                "type": "string"
+              },
+              "movementType": {
+                "type": "string"
+              },
+              "timestamp": {
+                "type": "string"
+              },
+              "destination": {
+                "type": "string"
+              },
+              "notes": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "RentalResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

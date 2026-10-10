@@ -1,0 +1,89 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Vehicle Movement API",
+    "version": "1.0.0",
+    "description": "API schema for vehicle movement information"
+  },
+  "paths": {
+    "/vehicle-movement": {
+      "post": {
+        "summary": "Cria ou atualiza uma movimentação de veículo",
+        "operationId": "createOrUpdateVehicleMovement",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VehicleMovement"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Movimentação de veículo processada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VehicleMovementResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro de validação de dados"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "VehicleMovement": {
+        "type": "object",
+        "properties": {
+          "vehicleId": {
+            "type": "string"
+          },
+          "fleetId": {
+            "type": "string"
+          },
+          "movementType": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "destination": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "movementId": {
+            "type": "string"
+          },
+          "contractId": {
+            "type": "string"
+          }
+        }
+      },
+      "VehicleMovementResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
